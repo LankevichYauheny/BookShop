@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/MySite.css" rel="stylesheet" />*@
+    @Styles.Render("~/bundles/styles")
+    @RenderSection("Styles", required: false)
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+        <div class="header-strip">
+            <div class="container">
+
+                @Html.Action("UserInfo", "Menu")
+            </div>
+            <div class="container">
+                <div class="navbar navbar-inverse" role="navigation">
+                    <div class="logo">
+                        <a class="navbar-brand" href="index.html">Ланкевич Евгений</a>
+                    </div>
+                    @* Здесь с помощью метода Request.RequestContext.RouteData.Values извлекаются параметры
+                        из текущего маршрута, чтобы передать их вместе с запросом контроллеру Menu.  *@
+                @Html.Action("Main", "Menu", new { c = Request.RequestContext.RouteData.Values["controller"] })
+            </div>
+        </div>
+    </div>
+    <div class="main-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                    <h2>@ViewBag.MyText</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    @RenderSection("SidePanel", required: false) 
+                </div>
+                <div class="col-md-9">
+                    @RenderBody() @*Вспомогательный метод для взаимодействия с представлением.*@ 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-strip">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.Action("Map", "Menu")
+                </div>
+                <div class="col-md-3 col-md-offset-6">
+                    <h6>Социальные сети</h6>
+                    <a href="https://www.linkedin.com/" class="social-icon in"></a>
+                    <a href="http://twitter.com" class="social-icon twitter"></a>
+                    <a href="http://facebook.com" class="social-icon facebook"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>*@
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

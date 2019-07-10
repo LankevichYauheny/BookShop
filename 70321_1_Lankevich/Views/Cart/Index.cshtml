@@ -1,0 +1,62 @@
+﻿@model _70321_1_Lankevich.Models.Cart
+
+@{
+    //Layout = null;
+    ViewBag.Title = "Index";
+}
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    function OnSuccess(data) {
+        if (data.result == true)
+        {
+            var id = 'cart_' + data.cartId;
+            var results = document.getElementById(id);
+            if ( data.quantity < 1 )
+                results.remove();
+            else
+                $(results).children().eq(1).html(data.quantity);
+            $('#Price').html(data.avarege)
+        }
+        $('#message').html(data.message);
+    }
+    function OnFailure(data) {
+        data;
+    }
+</script>
+
+
+<h2>Ваша корзина</h2>
+<p class="text-info" id="message"></p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GetItems())
+        {
+            <tr id="cart_@item.Book.Id">
+                <td>@item.Book.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Book.Price</td>
+                <td>
+                    @using (Ajax.BeginForm("DeleteFromCart", "Cart", new AjaxOptions { OnSuccess = "OnSuccess", OnFailure = "OnFailure", HttpMethod = "Post" }))
+                    {
+                        <input type="hidden" name="id" value="@item.Book.Id" />
+                        <input type="submit" value="Удалить" class="btn btn-default btn-link" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Средняя Цена для выбраных книг: <span id="Price">@Model.GetAvarege()</span></h3>
+
+<a href="@TempData["returnUrl"]" class="btn btn-defult">Вернуться к меню</a>
+

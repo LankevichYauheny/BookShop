@@ -1,0 +1,84 @@
+﻿.header-strip{
+    background-color: darkred;
+    padding: 5px;
+    border-bottom: 3px solid #00ffff;
+}
+.header-strip a, .header-strip span {
+    color: lightgray;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.navbar-inverse {
+    border-color: darkred;
+    background-color: darkred;
+}
+.logo {
+    float: left;
+    width: 50%;
+}
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.main-body {
+    border-bottom: 3px solid #00ffff;
+}
+.social-icon {
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.twitter {
+    background: url(../Images/twitter.png) no-repeat;
+}
+
+.facebook {
+    background: url(../Images/fb.png) no-repeat;
+}
+
+.in {
+    background: url(../Images/linked-in.png) no-repeat;
+}
+
+
+
+
+
+.footer-strip {
+    background-color: darkred;
+    padding: 5px;
+    color: #428bca;
+}
+
+.footer-strip li {
+    list-style-type: none;
+}
+
+.footer-strip a {
+    color: lightgray;
+}
+
+.footer-strip h6 {
+    color: lightgray;
+    border-bottom: dotted 1px #999999;
+}
+
+.item-row {
+    margin: 5px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.item-name {
+    min-height: 65px;
+}
+
+.item-description {
+    min-height: 50px;
+    border-top: solid 1px #dddddd;
+    border-bottom: solid 1px #dddddd
+}
